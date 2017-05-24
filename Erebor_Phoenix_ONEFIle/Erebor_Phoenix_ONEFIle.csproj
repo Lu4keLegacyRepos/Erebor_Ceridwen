@@ -5,15 +5,15 @@
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <ProjectGuid>{582B4D8E-9C92-43C2-A4F7-4B7D543DA520}</ProjectGuid>
-    <OutputType>Exe</OutputType>
+    <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Erebor_Phoenix_ONEFIle</RootNamespace>
-    <AssemblyName>Erebor_Phoenix_ONEFIle</AssemblyName>
+    <RootNamespace>Phoenix.EreborPlugin</RootNamespace>
+    <AssemblyName>Phoenix.EreborPlugin</AssemblyName>
     <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
-    <PlatformTarget>AnyCPU</PlatformTarget>
+    <PlatformTarget>x86</PlatformTarget>
     <DebugSymbols>true</DebugSymbols>
     <DebugType>full</DebugType>
     <Optimize>false</Optimize>
@@ -21,6 +21,7 @@
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+    <RunCodeAnalysis>false</RunCodeAnalysis>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <PlatformTarget>AnyCPU</PlatformTarget>
@@ -31,18 +32,92 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
+  <PropertyGroup>
+    <StartupObject />
+  </PropertyGroup>
   <ItemGroup>
+    <Reference Include="MulLib">
+      <HintPath>..\..\..\..\..\..\..\Program Files (x86)\Erebor\Phoenix\MulLib.dll</HintPath>
+    </Reference>
+    <Reference Include="Phoenix">
+      <HintPath>..\..\..\..\..\..\..\Program Files (x86)\Erebor\Phoenix\Phoenix.dll</HintPath>
+    </Reference>
+    <Reference Include="PhoenixShared">
+      <HintPath>..\..\..\..\..\..\..\Program Files (x86)\Erebor\Phoenix\PhoenixShared.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="System.Data" />
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Program.cs" />
+    <Compile Include="Abilites\AutoMorf.cs" />
+    <Compile Include="Abilites\Other.cs" />
+    <Compile Include="Abilites\QueueEx.cs" />
+    <Compile Include="Abilites\Targeting.cs" />
+    <Compile Include="Abilites\Voodoo.cs" />
+    <Compile Include="Autolot\Lot.cs" />
+    <Compile Include="Classes\IUOClass.cs" />
+    <Compile Include="Classes\Klerik.cs" />
+    <Compile Include="Classes\Mage.cs" />
+    <Compile Include="Classes\Nekromant.cs" />
+    <Compile Include="Classes\Ranger.cs" />
+    <Compile Include="Classes\Shaman.cs" />
+    <Compile Include="Classes\Thief.cs" />
+    <Compile Include="EquipSet\EqSet.cs" />
+    <Compile Include="EquipSet\EquipSet.cs" />
+    <Compile Include="Erebor\ClassSelector.cs" />
+    <Compile Include="Erebor\Erebor.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Erebor\Erebor.Designer.cs">
+      <DependentUpon>Erebor.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Erebor\Events\Events.cs" />
+    <Compile Include="Erebor\Events\HiddenChangeArgs.cs" />
+    <Compile Include="Erebor\Events\HitsChangedArgs.cs" />
+    <Compile Include="Erebor\Main.cs" />
+    <Compile Include="Erebor\Rune.cs" />
+    <Compile Include="Erebor\RuneTree.cs" />
+    <Compile Include="Erebor\Save_Load.cs" />
+    <Compile Include="Extensions\AddDialog.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Extensions\AddDialog.Designer.cs">
+      <DependentUpon>AddDialog.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Extensions\GameWindowSize.cs" />
+    <Compile Include="Extensions\GetItems.cs" />
+    <Compile Include="Extensions\MassMove.cs" />
+    <Compile Include="Extensions\RangerCircle.cs" />
+    <Compile Include="Extensions\Snap.cs" />
+    <Compile Include="Extensions\SwitchabeHotkeys.cs" />
+    <Compile Include="Extensions\TreasureMap.cs" />
+    <Compile Include="Extensions\UOAM.cs" />
+    <Compile Include="Extensions\VetesnikMethods.cs" />
+    <Compile Include="Extensions\WallCounter.cs" />
+    <Compile Include="Extensions\WallInfo.cs" />
+    <Compile Include="Healing\AutoHeal.cs" />
+    <Compile Include="Healing\HurtedPatient.cs" />
+    <Compile Include="Healing\Patient.cs" />
+    <Compile Include="Magic\Casting.cs" />
+    <Compile Include="Magic\Spells.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Serializer\Serializer.cs" />
+    <Compile Include="Skills\Hiding.cs" />
+    <Compile Include="Skills\Peacemaking_Enticement.cs" />
+    <Compile Include="Skills\Poisoning.cs" />
+    <Compile Include="Skills\Provocation.cs" />
+    <Compile Include="Skills\Tracking.cs" />
+    <Compile Include="Skills\Veterinary.cs" />
+    <Compile Include="Weapons\WeaponSet.cs" />
+    <Compile Include="Weapons\WeaponsHandle.cs" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

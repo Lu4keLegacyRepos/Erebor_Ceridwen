@@ -1,0 +1,138 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="14.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{457FFC96-78D4-4B87-926D-A000AFDD0651}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Erebor</RootNamespace>
+    <AssemblyName>Erebor</AssemblyName>
+    <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <PlatformTarget>x86</PlatformTarget>
+    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Microsoft.QualityTools.Testing.Fakes, Version=12.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+    </Reference>
+    <Reference Include="MulLib, Version=1.0.0.0, Culture=neutral, processorArchitecture=x86">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\..\..\..\..\Program Files (x86)\Erebor\Phoenix\MulLib.dll</HintPath>
+    </Reference>
+    <Reference Include="Phoenix">
+      <HintPath>..\..\..\..\..\..\..\Program Files (x86)\Erebor\Phoenix\Phoenix.dll</HintPath>
+    </Reference>
+    <Reference Include="PhoenixShared">
+      <HintPath>..\..\..\..\..\..\..\Program Files (x86)\Erebor\Phoenix\PhoenixShared.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="ClassSelector.cs" />
+    <Compile Include="Erebor.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Erebor.Designer.cs">
+      <DependentUpon>Erebor.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Events\Events.cs" />
+    <Compile Include="Events\HiddenChangeArgs.cs" />
+    <Compile Include="Events\HitsChangedArgs.cs" />
+    <Compile Include="Main.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Rune.cs" />
+    <Compile Include="RuneTree.cs" />
+    <Compile Include="Save_Load.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Abilites\Abilites.csproj">
+      <Project>{0c403e1c-7a92-4b0c-81b6-b82885850cf3}</Project>
+      <Name>Abilites</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Autolot\Autolot.csproj">
+      <Project>{fc54ccfe-ec32-4116-af83-9e6d10a57218}</Project>
+      <Name>Autolot</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Classes\Classes.csproj">
+      <Project>{030952C5-3BA9-401E-B4C2-5E4A3E87BF9A}</Project>
+      <Name>Classes</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\EquipSet\EquipSet.csproj">
+      <Project>{BCF243FD-DCF0-4FFD-B012-18982FB55C4F}</Project>
+      <Name>EquipSet</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Extensions\Extensions.csproj">
+      <Project>{36f8e7fc-c09f-41ef-84be-6a7204c7a0a2}</Project>
+      <Name>Extensions</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Healing\Healing.csproj">
+      <Project>{128150a0-e59f-4207-bafb-dddb2d75dc43}</Project>
+      <Name>Healing</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Magic\Magic.csproj">
+      <Project>{6f105e47-619d-4f81-8588-8426eaf195f7}</Project>
+      <Name>Magic</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Serializer\Serializer.csproj">
+      <Project>{182d9a6d-fa2b-4d56-a7d8-d7ad36f9969c}</Project>
+      <Name>Serializer</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Skills\Skills.csproj">
+      <Project>{9a6fa530-d9e0-44b9-b922-a652f3681d5e}</Project>
+      <Name>Skills</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Weapons\Weapons.csproj">
+      <Project>{DC81BA71-102C-4CA2-87B7-B47B47BA4F18}</Project>
+      <Name>Weapons</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Erebor.resx">
+      <DependentUpon>Erebor.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

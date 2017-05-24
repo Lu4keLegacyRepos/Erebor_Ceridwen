@@ -5,8 +5,8 @@ using System.Runtime.InteropServices;
 // General Information about an assembly is controlled through the following 
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
-[assembly: AssemblyTitle("Erebor_Phoenix_ONEFIle")]
-[assembly: AssemblyDescription("")]
+[assembly: AssemblyTitle("Erebor dll for Phoenix")]
+[assembly: AssemblyDescription("UO Erebor -sw Phoenix")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("")]
 [assembly: AssemblyProduct("Erebor_Phoenix_ONEFIle")]
