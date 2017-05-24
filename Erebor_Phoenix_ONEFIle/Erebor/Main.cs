@@ -505,7 +505,8 @@ namespace Phoenix.EreborPlugin
                 AHeal.OnOff = false;
                 tmp = true;
             }
-            UO.Attack(t);
+
+
             Casting.ccast(s, t, AHeal.bandage,obet);
             UO.Wait(Casting.SpellsDelays[s]);
             if (tmp == true && AHeal.OnOff == false) AHeal.OnOff = true;
@@ -520,7 +521,7 @@ namespace Phoenix.EreborPlugin
         public void ccast(string s,Serial t)
         {
             if (ActualClass.arrowSelfProgress) return;
-            UO.Attack(t);
+            if (Aliases.LastAttack != t) UO.Attack(t);
             Casting.ccast(s,t, AHeal.bandage,obet);
         }
         [Command]
