@@ -9,7 +9,7 @@ namespace Phoenix.EreborPlugin.Autolot
     public class Lot
     {
 
-        private List<ushort> toCarv = new List<ushort> { 0x2006, 0x0EE3, 0x0EE4, 0x0EE5, 0x0EE6 };//pavuciny
+        private List<Graphic> toCarv = new List<Graphic> { 0x2006, 0x0EE3, 0x0EE4, 0x0EE5, 0x0EE6, 0x2006 };//pavuciny+mrtvola
         private readonly List<string> jezdidla = new List<string> { "body of mustang", "body of zostrich", "body of oclock", "body of orn", "oody of ledni medved", "body of ridgeback", "body of ridgeback savage" };
 
         //private readonly List<string> jezdidla = new List<string> { "Body of Mustang", "Body of Zostrich", "Body of Oclock", "Body of Orn", "Body of Ledni medved", "Boby of ridgeback", "Body of ridgeback savage" };
@@ -259,7 +259,7 @@ namespace Phoenix.EreborPlugin.Autolot
         public void Carving()
         {
             World.FindDistance = 4;
-            foreach (UOItem it in World.Ground.Where(x => x.Distance < 4 && x.Graphic == 0x2006))// && jezdidla.All(y => y != x.Name.ToLower()) ))//!jezdidla.Contains(x.Name)).ToList())
+            foreach (UOItem it in World.Ground.Where(x => x.Distance < 4 && toCarv.Any(p=>x.Graphic==p)))//x.Graphic == 0x2006))// && jezdidla.All(y => y != x.Name.ToLower()) ))//!jezdidla.Contains(x.Name)).ToList())
             {
                 it.Click();
                 UO.Wait(100);
