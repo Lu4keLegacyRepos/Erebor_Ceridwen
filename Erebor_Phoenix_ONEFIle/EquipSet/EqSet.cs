@@ -5,7 +5,7 @@ using System.Threading;
 
 namespace Phoenix.EreborPlugin.EquipSet
 {
-    public delegate void Move();
+    public delegate void Move(ushort amount,UOItem item);
     public class EqSet
     {
         private UOItem dropBagl, tempItem;
@@ -92,16 +92,16 @@ namespace Phoenix.EreborPlugin.EquipSet
                 tempItem = new UOItem(s);
                 //temp.Move(ushort.MaxValue, dropBagl);
                 Move mo = new Move(Mov);
-                mo.BeginInvoke(null, null);
+                mo.BeginInvoke(1,tempItem,null, null);
                 //new Thread(Mov).Start();
-                UO.Wait(10);
+                UO.Wait(50);
             }
 
         }
 
-        public void Mov()
+        public void Mov(ushort Amount, UOItem item )
         {
-            tempItem.Move(ushort.MaxValue, dropBagl);
+            item.Move(Amount, dropBagl);
         }
         public override string ToString()
         {
