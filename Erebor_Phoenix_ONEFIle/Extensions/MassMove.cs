@@ -1,10 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-using System.Timers;
-using Phoenix;
+﻿using Phoenix.Communication;
 using Phoenix.WorldData;
-using Phoenix.Communication;
 
 namespace Phoenix.EreborPlugin.Extensions
 

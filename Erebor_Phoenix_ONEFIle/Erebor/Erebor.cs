@@ -1,10 +1,9 @@
-﻿using System;
+﻿using Phoenix.EreborPlugin.Extensions;
+using Phoenix.WorldData;
+using System;
 using System.Data;
 using System.Linq;
 using System.Windows.Forms;
-using Phoenix;
-using Phoenix.WorldData;
-using Phoenix.EreborPlugin.Extensions;
 
 namespace Phoenix.EreborPlugin.Erebor
 

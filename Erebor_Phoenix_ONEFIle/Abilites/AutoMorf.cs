@@ -1,5 +1,4 @@
-﻿using Phoenix;
-using Phoenix.Communication;
+﻿using Phoenix.Communication;
 using Phoenix.WorldData;
 
 namespace Phoenix.EreborPlugin.Abilites

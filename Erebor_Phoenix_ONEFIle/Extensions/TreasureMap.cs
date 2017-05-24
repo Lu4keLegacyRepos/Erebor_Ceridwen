@@ -1,6 +1,5 @@
-﻿using System;
-using Phoenix.Communication;
-using Phoenix;
+﻿using Phoenix.Communication;
+using System;
 
 namespace Phoenix.EreborPlugin.Extensions
 {

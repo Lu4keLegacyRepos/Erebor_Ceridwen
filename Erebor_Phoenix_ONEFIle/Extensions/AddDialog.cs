@@ -1,11 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using Phoenix.Runtime;
+using System;
 using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Text;
 using System.Windows.Forms;
-using Phoenix.Runtime;
 
 namespace Phoenix.Gui.Pages
 {

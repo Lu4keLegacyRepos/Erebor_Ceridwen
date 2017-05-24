@@ -1,8 +1,6 @@
-﻿using Phoenix.WorldData;
-using Phoenix.Communication.Packets;
+﻿using Phoenix.Communication.Packets;
+using Phoenix.WorldData;
 using System.Collections.Generic;
-using System.Text.RegularExpressions;
-using Phoenix;
 
 namespace Phoenix.EreborPlugin.Extensions
 {

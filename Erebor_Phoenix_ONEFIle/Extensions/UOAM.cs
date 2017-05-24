@@ -1,17 +1,16 @@
-﻿using System;
+﻿using Phoenix.Communication;
+using Phoenix.Communication.Packets;
+using Phoenix.Runtime;
+using Phoenix.WorldData;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Diagnostics;
+using System.Linq;
 using System.Runtime.InteropServices;
 using System.Text;
 using System.Threading;
 using System.Windows.Forms;
-using Phoenix.Communication;
-using Phoenix.Communication.Packets;
-using Phoenix.Runtime;
-using Phoenix.WorldData;
-using System.Linq;
-using Phoenix;
 
 namespace Phoenix.EreborPlugin.Extensions
 {

@@ -1,5 +1,4 @@
-﻿using Phoenix;
-using Phoenix.Gui.Pages;
+﻿using Phoenix.Gui.Pages;
 using System;
 using System.Collections.Generic;
 using System.Windows.Forms;

@@ -1,7 +1,4 @@
-﻿
-
-using Phoenix;
-using Phoenix.WorldData;
+﻿using Phoenix.WorldData;
 using System.Collections.Generic;
 
 namespace Phoenix.EreborPlugin.EquipSet

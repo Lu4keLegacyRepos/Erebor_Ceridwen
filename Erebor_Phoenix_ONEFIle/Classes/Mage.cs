@@ -1,6 +1,4 @@
-﻿
-using System;
-using Phoenix.WorldData;
+﻿using Phoenix.WorldData;
 
 namespace Phoenix.EreborPlugin.Classes
 {

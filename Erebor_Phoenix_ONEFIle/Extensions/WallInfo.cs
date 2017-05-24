@@ -1,9 +1,5 @@
-﻿using Phoenix;
-using Phoenix.Communication.Packets;
+﻿using Phoenix.Communication.Packets;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using System.Timers;
 
 namespace Phoenix.EreborPlugin.Extensions

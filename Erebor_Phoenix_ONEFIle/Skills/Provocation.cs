@@ -1,9 +1,4 @@
-﻿using Phoenix;
-using Phoenix.WorldData;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
+﻿using Phoenix.WorldData;
 
 namespace Phoenix.EreborPlugin.Skills
 {

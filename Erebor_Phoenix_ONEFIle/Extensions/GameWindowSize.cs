@@ -1,9 +1,8 @@
-﻿using System;
+﻿using Phoenix.Gui;
+using System;
 using System.ComponentModel;
 using System.Diagnostics;
 using System.Runtime.InteropServices;
-using Phoenix.Gui;
-using Phoenix;
 
 namespace Phoenix.EreborPlugin.Extensions
 {
