@@ -8,7 +8,7 @@ namespace Phoenix.EreborPlugin.EquipSet
     public delegate void Move(ushort amount,UOItem item);
     public class EqSet
     {
-        private UOItem dropBagl, tempItem;
+        private UOItem dropBagl;
         private string SetName;
         private List<Serial> set;
         private Dictionary<Serial, Layer> checkList = new Dictionary<Serial, Layer>();
@@ -89,12 +89,12 @@ namespace Phoenix.EreborPlugin.EquipSet
         {
             foreach (Serial s in checkList.Keys)
             {
-                tempItem = new UOItem(s);
+                
                 //temp.Move(ushort.MaxValue, dropBagl);
                 Move mo = new Move(Mov);
-                mo.BeginInvoke(1,tempItem,null, null);
+                mo.BeginInvoke(1, new UOItem(s),null, null);
                 //new Thread(Mov).Start();
-                UO.Wait(50);
+                UO.Wait(100);
             }
 
         }
