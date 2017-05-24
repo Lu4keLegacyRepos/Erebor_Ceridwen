@@ -7,21 +7,23 @@ namespace Phoenix.EreborPlugin.Magic
 {
     public class Casting
     {
-        public Dictionary<string, int> SpellsDelays = new Dictionary<string, int> { { "Fireball", 2060 }, { "Flame", 4100 }, { "Meteor", 6750 }, { "Lightning", 3550 }, { "Bolt", 3100 }, {"frostbolt",2900 }, { "Harm", 1500 }, { "Mind", 3450 }, { "Invis", 3300 }/*-150*/ };
+        public Dictionary<string, int> SpellsDelays = new Dictionary<string, int> { { "Fireball", 2060 }, { "Flame", 4100 }, { "Meteor", 6750 }, { "Lightning", 3550 }, { "Bolt", 3100 }, {"frostbolt",3000 }, { "Harm", 1500 }, { "Mind", 3450 }, { "Invis", 3300 }/*-150*/ };
         public string lastSpell;
         public Serial lastTarget;
         private bool acast = false;
+        public int ManaLimit { get; set; }
         public bool autoSacrafire { get; set; }
         private bool SpellFizz { get; set; }
 
         public Casting()
         {
+            ManaLimit = 70;
         }
 
         public void ccast(string spellname, Serial target, Action bandage, Action Sacrafire)
         {
             if (World.Player.Hits < World.Player.MaxHits - 7) bandage();
-            if (autoSacrafire && World.Player.Mana < World.Player.MaxMana - 70) Sacrafire();
+            if (autoSacrafire && World.Player.Mana < World.Player.MaxMana - ManaLimit) Sacrafire();
             if (spellname == "necrobolt" || spellname == "frostbolt")
             {
                 lastTarget = target;
@@ -42,7 +44,7 @@ namespace Phoenix.EreborPlugin.Magic
         public void ccast(string spellname, Action bandage,Action Sacrafire)
         {
             if (World.Player.Hits < World.Player.MaxHits - 7) bandage();
-            if (autoSacrafire && World.Player.Mana < World.Player.MaxMana - 70) Sacrafire();
+            if (autoSacrafire && World.Player.Mana < World.Player.MaxMana - ManaLimit) Sacrafire();
             if (spellname == "necrobolt" || spellname == "frostbolt")
             {
                 UO.Say("." + spellname);
@@ -177,7 +179,7 @@ namespace Phoenix.EreborPlugin.Magic
                     UO.Print("Autocast ON");
                     while (acast)
                     {
-                        if (autoSacrafire && World.Player.Mana < World.Player.MaxMana - 70 ) Sacrafire();
+                        if (autoSacrafire && World.Player.Mana < World.Player.MaxMana - ManaLimit) Sacrafire();
                         start = DateTime.Now;
                         ccast(lastSpell, lastTarget,bandage,Sacrafire);
                         while((DateTime.Now-start)<TimeSpan.FromMilliseconds(SpellsDelays[lastSpell]))
