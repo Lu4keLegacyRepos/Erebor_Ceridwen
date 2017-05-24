@@ -63,7 +63,7 @@ namespace Phoenix.EreborPlugin.Abilites
             }
         }
 
-        public void probo(ref DateTime HiddenTime)
+        public void probo(DateTime HiddenTime)
         {
             UOCharacter target = new UOCharacter(Aliases.GetObject("laststatus"));
             bool first = true;

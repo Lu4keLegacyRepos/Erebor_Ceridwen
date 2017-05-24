@@ -460,7 +460,9 @@ namespace Phoenix.EreborPlugin
         [Command,BlockMultipleExecutions]
         public void probo()
         {
-            OtherAbilites.probo(ref HiddenTime);
+            HitBandage = false;
+            OtherAbilites.probo(HiddenTime);
+            HitBandage = true;
         }
         [Command,BlockMultipleExecutions]
         public void kudla()
@@ -719,7 +721,7 @@ namespace Phoenix.EreborPlugin
 
             foreach (string s in onHitCalls)
             {
-                if (packet.Text.Contains(s) && World.Player.Hits < World.Player.MaxHits - 10 && !World.Player.Hidden)
+                if (packet.Text.Contains(s) && World.Player.Hits < World.Player.MaxHits - 10)
                 {
                     Core.UnregisterServerMessageCallback(0x1C, OnHitBandage);
                     bandage asBanage = new bandage(AHeal.bandage);
