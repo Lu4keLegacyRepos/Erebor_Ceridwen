@@ -1,11 +1,13 @@
-﻿using Phoenix.WorldData;
+﻿using Phoenix.Communication;
+using Phoenix.WorldData;
 using System.Collections.Generic;
+using System.Threading;
 
 namespace Phoenix.EreborPlugin.EquipSet
 {
     public class EqSet
     {
-        private UOItem dropBagl;
+        private UOItem dropBagl, tempItem;
         private string SetName;
         private List<Serial> set;
         private Dictionary<Serial, Layer> checkList = new Dictionary<Serial, Layer>();
@@ -45,11 +47,17 @@ namespace Phoenix.EreborPlugin.EquipSet
         public void Dress(UOItem dropBag)
         {
             dropBagl = dropBag;
+            UOItem tmp;
             checkAndStore();
             foreach (Serial s in set)
             {
                 if (s == set[0]) continue;
-                new UOItem(s).Equip();
+                tmp = new UOItem(s);
+                if (tmp.Layer == Layer.LeftHand || tmp.Layer == Layer.RightHand)
+                {
+                    tmp.Equip();
+                }
+                else tmp.Use();
             }
             checkAndStore_();
 
@@ -80,11 +88,17 @@ namespace Phoenix.EreborPlugin.EquipSet
         {
             foreach (Serial s in checkList.Keys)
             {
-                UOItem temp = new UOItem(s);
-                temp.Move(ushort.MaxValue, dropBagl);
-                UO.Wait(100);
+                tempItem = new UOItem(s);
+                //temp.Move(ushort.MaxValue, dropBagl);
+                new Thread(Mov).Start();
+                UO.Wait(10);
             }
 
+        }
+
+        private void Mov()
+        {
+            tempItem.Move(ushort.MaxValue, dropBagl);
         }
         public override string ToString()
         {
