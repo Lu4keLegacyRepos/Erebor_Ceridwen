@@ -119,8 +119,8 @@ namespace Phoenix.EreborPlugin.Skills
             first = true;
             UO.Warmode(false);
             Core.UnregisterServerMessageCallback(0x7C, onMenu);
-            Core.RegisterServerMessageCallback(0x7C, onMenu);
             UO.WaitMenu("Tracking", choosed);
+            Core.RegisterServerMessageCallback(0x7C, onMenu);
             UO.UseSkill(StandardSkill.Tracking);
         }
 
@@ -156,12 +156,16 @@ namespace Phoenix.EreborPlugin.Skills
                 Tracked.Add(pr.ReadAnsiString(length));
             }
             printTrackList();
+            Core.UnregisterServerMessageCallback(0x7C, onMenu);
             PacketWriter pw = new PacketWriter(0x7D);
             pw.Write(dialogID);
+            pw.Write(menuid);
+            pw.Write(fake);
             pw.Write(fake);
             pw.Write(fake);
             Core.SendToServer(pw.GetBytes());
-            Core.UnregisterServerMessageCallback(0x7C, onMenu);
+            Core.SendToClient(pw.GetBytes());
+
             dialogID = 0;
             menuid = 0;
             return CallbackResult.Eat;
