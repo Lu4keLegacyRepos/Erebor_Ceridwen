@@ -741,9 +741,10 @@ namespace Phoenix.EreborPlugin
 
             foreach (string s in onHitCalls)
             {
-                Core.UnregisterServerMessageCallback(0x1C, OnHitTrack);
+
                 if (packet.Text.Contains(s))
                 {
+                    Core.UnregisterServerMessageCallback(0x1C, OnHitTrack);
                     UO.Say(",track 2 true");
                     Core.RegisterServerMessageCallback(0x1C, OnHitTrack);
                     return CallbackResult.Normal;
