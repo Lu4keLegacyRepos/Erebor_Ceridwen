@@ -7,7 +7,7 @@ namespace Phoenix.EreborPlugin.Extensions
 {
     public class SwitchabeHotkeys
     {
-        public List<string> swHotkeys;
+        public List<string> swHotkeys { get; set; }
         public static SwitchabeHotkeys instance;
         private bool on = true;
 

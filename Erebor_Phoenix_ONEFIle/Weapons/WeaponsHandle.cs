@@ -93,7 +93,7 @@ namespace Phoenix.EreborPlugin.Weapons
                 {
                     ActualWeapon = weapons[indxActualW + 1];
                 }
-                if (ActualWeapon.Weapon.Exist)
+                if ((new UOItem(ActualWeapon.Weapon)).Exist)
                     ActualWeapon.Equip();
                 else
                 {

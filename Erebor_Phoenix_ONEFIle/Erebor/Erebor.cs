@@ -9,7 +9,7 @@ namespace Phoenix.EreborPlugin.Erebor
 
 {
     public delegate void CheckAll();
-    [PhoenixWindowTabPage("Erebor",Position =7)]
+    [PhoenixWindowTabPage("Erebor")]
     public partial class Erebor : UserControl
     {
         public static Erebor instance;
@@ -308,77 +308,69 @@ namespace Phoenix.EreborPlugin.Erebor
         {
             if(Main.instance.AutoDrink!= chbAutodrink.Checked)
             Main.instance.AutoDrink = chbAutodrink.Checked;
-            Save_Load.Save(World.Player.Name.ToString() + ".xml");
+
         }
 
         private void chbAutoArrow_CheckedChanged(object sender, EventArgs e)
         {
             if (Main.instance.Spells.AutoArrow != chbAutoArrow.Checked)
                 Main.instance.Spells.AutoArrow = chbAutoArrow.Checked;
-            Save_Load.Save(World.Player.Name.ToString() + ".xml");
         }
 
         private void checkBox6_CheckedChanged(object sender, EventArgs e)
         {
             if (Main.instance.HitBandage != checkBox6.Checked)
                 Main.instance.HitBandage = checkBox6.Checked;
-            Save_Load.Save(World.Player.Name.ToString() + ".xml");
         }
 
         private void checkBox1_CheckedChanged(object sender, EventArgs e)
         {
             if (Main.instance.Amorf.Amorf != checkBox1.Checked)
                 Main.instance.Amorf.Amorf = checkBox1.Checked;
-            Save_Load.Save(World.Player.Name.ToString() + ".xml");
         }
 
         private void checkBox2_CheckedChanged(object sender, EventArgs e)
         {
             if (Main.instance.CorpseHide != checkBox2.Checked)
                 Main.instance.CorpseHide = checkBox2.Checked;
-            Save_Load.Save(World.Player.Name.ToString() + ".xml");
         }
 
         private void checkBox3_CheckedChanged(object sender, EventArgs e)
         {
             if (Main.instance.DoLot != checkBox3.Checked)
                 Main.instance.DoLot = checkBox3.Checked;
-            Save_Load.Save(World.Player.Name.ToString() + ".xml");
+
         }
 
         private void checkBox5_CheckedChanged(object sender, EventArgs e)
         {
             if (Main.instance.Lot.Food != checkBox5.Checked)
                 Main.instance.Lot.Food = checkBox5.Checked;
-            Save_Load.Save(World.Player.Name.ToString() + ".xml");
+
         }
 
         private void checkBox4_CheckedChanged(object sender, EventArgs e)
         {
             if (Main.instance.Lot.Leather != checkBox4.Checked)
                 Main.instance.Lot.Leather = checkBox4.Checked;
-            Save_Load.Save(World.Player.Name.ToString() + ".xml");
         }
 
         private void checkBox13_CheckedChanged(object sender, EventArgs e)
         {
             if (Main.instance.Lot.Bolts != checkBox13.Checked)
                 Main.instance.Lot.Bolts = checkBox13.Checked;
-            Save_Load.Save(World.Player.Name.ToString() + ".xml");
         }
 
         private void checkBox12_CheckedChanged(object sender, EventArgs e)
         {
             if (Main.instance.Lot.Extend1 != checkBox12.Checked)
                 Main.instance.Lot.Extend1 = checkBox12.Checked;
-            Save_Load.Save(World.Player.Name.ToString() + ".xml");
         }
 
         private void checkBox11_CheckedChanged(object sender, EventArgs e)
         {
             if (Main.instance.Lot.Extend2 != checkBox11.Checked)
                 Main.instance.Lot.Extend2 = checkBox11.Checked;
-            Save_Load.Save(World.Player.Name.ToString() + ".xml");
         }
 
         private void button1_Click(object sender, EventArgs e)
@@ -388,7 +380,6 @@ namespace Phoenix.EreborPlugin.Erebor
             Main.instance.Lot.extend1_type = new Graphic(it.Graphic);
             button1.Text = Main.instance.Lot.extend1_type.ToString();
             button1.Refresh();
-            Save_Load.Save(World.Player.Name.ToString() + ".xml");
         }
 
         private void button2_Click(object sender, EventArgs e)
@@ -398,42 +389,36 @@ namespace Phoenix.EreborPlugin.Erebor
             Main.instance.Lot.extend2_type = new Graphic(it.Graphic);
             button2.Text = Main.instance.Lot.extend1_type.ToString();
             button2.Refresh();
-            Save_Load.Save(World.Player.Name.ToString() + ".xml");
         }
 
         private void button10_Click(object sender, EventArgs e)
         {
             UO.PrintInformation("Zamer Kuchatko");
             Main.instance.Lot.CarvTool = new UOItem(UIManager.TargetObject());
-            Save_Load.Save(World.Player.Name.ToString() + ".xml");
         }
 
         private void button11_Click(object sender, EventArgs e)
         {
             UO.PrintInformation("Zamer batoh");
             Main.instance.Lot.LotBag = new UOItem(UIManager.TargetObject());
-            Save_Load.Save(World.Player.Name.ToString() + ".xml");
         }
 
         private void checkBox9_CheckedChanged(object sender, EventArgs e)
         {
             if (Main.instance.Lot.Feathers != checkBox9.Checked)
                 Main.instance.Lot.Feathers = checkBox9.Checked;
-            Save_Load.Save(World.Player.Name.ToString() + ".xml");
         }
 
         private void checkBox8_CheckedChanged(object sender, EventArgs e)
         {
             if (Main.instance.Lot.Gems != checkBox8.Checked)
                 Main.instance.Lot.Gems = checkBox8.Checked;
-            Save_Load.Save(World.Player.Name.ToString() + ".xml");
         }
 
         private void checkBox7_CheckedChanged(object sender, EventArgs e)
         {
             if (Main.instance.Lot.Reageants != checkBox7.Checked)
                 Main.instance.Lot.Reageants = checkBox7.Checked;
-            Save_Load.Save(World.Player.Name.ToString() + ".xml");
         }
 
 
@@ -441,48 +426,47 @@ namespace Phoenix.EreborPlugin.Erebor
 
         public void CheckAll()
         {
-            textBox5.Text = Main.instance.GWWidth.ToString();
-            textBox7.Text = Main.instance.GWHeight.ToString();
-            textBox3.Text = Main.instance.ActualClass.minHP.ToString();
-            textBox2.Text = Main.instance.ActualClass.criticalHits.ToString();
-            textBox1.Text = Main.instance.GoldLimit.ToString();
-            checkBox7.Checked = Main.instance.Lot.Reageants;
-            checkBox8.Checked = Main.instance.Lot.Gems;
-            checkBox9.Checked = Main.instance.Lot.Feathers;
-            button2.Text = Main.instance.Lot.extend1_type.ToString();
-            button1.Text = Main.instance.Lot.extend1_type.ToString();
-            checkBox11.Checked = Main.instance.Lot.Extend2;
-            checkBox12.Checked = Main.instance.Lot.Extend1;
-            checkBox13.Checked = Main.instance.Lot.Bolts;
-            checkBox4.Checked = Main.instance.Lot.Leather;
-            checkBox5.Checked = Main.instance.Lot.Food;
-            checkBox3.Checked = Main.instance.DoLot;
-            checkBox2.Checked = Main.instance.CorpseHide;
-            checkBox1.Checked = Main.instance.Amorf.Amorf;
-            checkBox6.Checked = Main.instance.HitBandage;
-            chbAutoArrow.Checked = Main.instance.Spells.AutoArrow;
-            chbAutodrink.Checked = Main.instance.AutoDrink;
-            checkBox10.Checked = Main.instance.PrintAnim;
-            checkBox14.Checked = Main.instance.HitTrack;
-            textBox4.Text= Main.instance.ActualClass.hidDelay.ToString();
-            rt.FillTreeView(Runes);
 
-            Main.instance.EqipSet.fillListBox(listBox1);
-            Main.instance.Weapons.fillListBox(listBox2);
-            Main.instance.AHeal.fillListBox(listBox3);
+                textBox5.Text = Main.instance.GWWidth.ToString();
+                textBox7.Text = Main.instance.GWHeight.ToString();
+                textBox3.Text = Main.instance.ActualClass.minHP.ToString();
+                textBox2.Text = Main.instance.ActualClass.criticalHits.ToString();
+                textBox1.Text = Main.instance.GoldLimit.ToString();
+                checkBox7.Checked = Main.instance.Lot.Reageants;
+                checkBox8.Checked = Main.instance.Lot.Gems;
+                checkBox9.Checked = Main.instance.Lot.Feathers;
+                button2.Text = Main.instance.Lot.extend1_type.ToString();
+                button1.Text = Main.instance.Lot.extend1_type.ToString();
+                checkBox11.Checked = Main.instance.Lot.Extend2;
+                checkBox12.Checked = Main.instance.Lot.Extend1;
+                checkBox13.Checked = Main.instance.Lot.Bolts;
+                checkBox4.Checked = Main.instance.Lot.Leather;
+                checkBox5.Checked = Main.instance.Lot.Food;
+                checkBox3.Checked = Main.instance.DoLot;
+                checkBox2.Checked = Main.instance.CorpseHide;
+                checkBox1.Checked = Main.instance.Amorf.Amorf;
+                checkBox6.Checked = Main.instance.HitBandage;
+                chbAutoArrow.Checked = Main.instance.Spells.AutoArrow;
+                chbAutodrink.Checked = Main.instance.AutoDrink;
+                checkBox10.Checked = Main.instance.PrintAnim;
+                checkBox14.Checked = Main.instance.HitTrack;
+                textBox4.Text = Main.instance.ActualClass.hidDelay.ToString();
+                rt.FillTreeView(Runes);
+
+                Main.instance.EqipSet.fillListBox(listBox1);
+                Main.instance.Weapons.fillListBox(listBox2);
+                Main.instance.AHeal.fillListBox(listBox3);
+
         }
 
         private void button3_Click(object sender, EventArgs e)
         {
             SwitchabeHotkeys.instance.Add();
-            Save_Load.Save(World.Player.Name.ToString() + ".xml");
         }
 
         private void button4_Click(object sender, EventArgs e)
         {
             SwitchabeHotkeys.instance.Clear();
-            Save_Load.Save(World.Player.Name.ToString() + ".xml");
-
         }
         private void textBox1_KeyPress(object sender, KeyPressEventArgs e)
         {
@@ -510,56 +494,48 @@ namespace Phoenix.EreborPlugin.Erebor
         {
             if (Main.instance.GoldLimit != ushort.Parse(textBox1.Text))
                 Main.instance.GoldLimit = ushort.Parse(textBox1.Text);
-            Save_Load.Save(World.Player.Name.ToString() + ".xml");
         }
 
         private void textBox2_TextChanged(object sender, EventArgs e)
         {
             if (Main.instance.ActualClass.criticalHits != uint.Parse(textBox2.Text))
                 Main.instance.ActualClass.criticalHits = uint.Parse(textBox2.Text);
-            Save_Load.Save(World.Player.Name.ToString() + ".xml");
         }
 
         private void textBox3_TextChanged(object sender, EventArgs e)
         {
             if (Main.instance.ActualClass.minHP != uint.Parse(textBox3.Text))
                 Main.instance.ActualClass.minHP = uint.Parse(textBox3.Text);
-            Save_Load.Save(World.Player.Name.ToString() + ".xml");
         }
 
         private void checkBox10_CheckedChanged(object sender, EventArgs e)
         {
             if (Main.instance.PrintAnim != checkBox10.Checked)
                 Main.instance.PrintAnim = checkBox10.Checked;
-            Save_Load.Save(World.Player.Name.ToString() + ".xml");
         }
 
         private void textBox4_TextChanged(object sender, EventArgs e)
         {
             if (Main.instance.ActualClass.hidDelay != uint.Parse(textBox4.Text))
                 Main.instance.ActualClass.hidDelay = uint.Parse(textBox4.Text);
-            Save_Load.Save(World.Player.Name.ToString() + ".xml");
         }
 
         private void textBox4_KeyPress(object sender, KeyPressEventArgs e)
         {
             int isNumber = 0;
             e.Handled = !int.TryParse(e.KeyChar.ToString(), out isNumber);
-            Save_Load.Save(World.Player.Name.ToString() + ".xml");
         }
 
         private void checkBox14_CheckedChanged(object sender, EventArgs e)
         {
             if (Main.instance.HitTrack != checkBox14.Checked)
                 Main.instance.HitTrack = checkBox14.Checked;
-            Save_Load.Save(World.Player.Name.ToString() + ".xml");
         }
 
         private void textBox5_TextChanged(object sender, EventArgs e)
         {
             if (Main.instance.GWWidth != int.Parse(textBox5.Text))
                 Main.instance.GWWidth = int.Parse(textBox5.Text);
-            Save_Load.SaveWindowSize();
         }
 
         private void textBox5_KeyPress(object sender, KeyPressEventArgs e)
@@ -572,7 +548,6 @@ namespace Phoenix.EreborPlugin.Erebor
         {
             if (Main.instance.GWHeight != int.Parse(textBox7.Text))
                 Main.instance.GWHeight = int.Parse(textBox7.Text);
-            Save_Load.SaveWindowSize();
         }
 
         private void textBox7_KeyPress(object sender, KeyPressEventArgs e)

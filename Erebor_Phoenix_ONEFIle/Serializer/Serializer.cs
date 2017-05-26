@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Windows.Forms;
 using System.Xml.Serialization;
-
+/*
 namespace Phoenix.EreborPlugin.Erebor
 {
     public static class Serializer
@@ -53,3 +53,4 @@ namespace Phoenix.EreborPlugin.Erebor
     }
 }
 
+    */

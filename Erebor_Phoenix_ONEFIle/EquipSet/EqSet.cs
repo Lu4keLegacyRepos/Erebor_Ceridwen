@@ -1,17 +1,23 @@
 ﻿using Phoenix.Communication;
 using Phoenix.WorldData;
+using System;
 using System.Collections.Generic;
 using System.Threading;
 
 namespace Phoenix.EreborPlugin.EquipSet
 {
     public delegate void Move(ushort amount,UOItem item);
+    [Serializable]
     public class EqSet
     {
         private UOItem dropBagl;
-        private string SetName;
-        private List<Serial> set;
+        public string SetName { get; set; }
+        public List<Serial> set { get; set; }
         private Dictionary<Serial, Layer> checkList = new Dictionary<Serial, Layer>();
+        public EqSet()
+        {
+
+        }
         public EqSet(UOItem SetBAG)
         {
             set = new List<Serial>() { SetBAG.Serial };

@@ -1,15 +1,34 @@
 ﻿using Phoenix.WorldData;
+using System;
+using System.Runtime.Remoting.Activation;
+using System.Xml.Serialization;
 
 namespace Phoenix.EreborPlugin.Healing
 {
+    [Serializable]
     public class Patient
     {
-        public UOCharacter character { get; set; }
+        [XmlIgnore]
+        public UOCharacter chara;// { get; set; }
+        public uint character {
+            get
+            {
+                return (uint)chara.Serial;
+            }
+            set
+            {
+                chara = new UOCharacter(value);
+            }
+        }
         public int equip { get; set; }
-        public Patient(UOCharacter ch, int eq)
+        public Patient(uint ch, int eq)
         {
             this.character = ch;
             this.equip = eq;
+        }
+        public Patient()
+        {
+
         }
         public Patient(string createString)
         {
@@ -20,7 +39,7 @@ namespace Phoenix.EreborPlugin.Healing
         }
         public override string ToString()
         {
-            return character.Serial.ToString() + ";" + equip.ToString();
+            return chara.Serial.ToString() + ";" + equip.ToString();
         }
 
     }

@@ -5,10 +5,27 @@ using System.Windows.Forms;
 namespace Phoenix.EreborPlugin.Weapons
 {
     public delegate void Equip();
+    [Serializable]
     public class WeaponSet
     {
-        public UOItem Weapon { get; private set; }
-        public UOItem Shield { get; private set; }
+        private UOItem weapon;
+        private UOItem shield;
+        public uint Weapon
+        {
+            get { return weapon; }
+            set
+            {
+                weapon = new UOItem(value);
+            }
+        }
+        public uint Shield
+        {
+            get { return shield; }
+            set
+            {
+                shield = new UOItem(value);
+            }
+        }
         private string setName;
 
         public string Name { get
@@ -30,15 +47,19 @@ namespace Phoenix.EreborPlugin.Weapons
                 Weapon = weapon;
                 Shield =shield;
                 UO.Wait(200);
-                if (Weapon.Exist) Weapon.Click();
-                if (Shield.Exist) Shield.Click();
+                if (weapon.Exist) weapon.Click();
+                if (shield.Exist) shield.Click();
                 UO.Wait(200);
-                Name = Weapon == null ? "NULL" : Weapon.Name == "" ? Weapon.Serial.ToString() : Weapon.Name;
+                Name = weapon == null ? "NULL" : weapon.Name == "" ? weapon.Serial.ToString() : weapon.Name;
             }
             catch(Exception ex)
             {
                 MessageBox.Show(ex.Message);
             }
+        }
+        public WeaponSet()
+        {
+
         }
         public WeaponSet(string StringCode)
         {
@@ -49,17 +70,20 @@ namespace Phoenix.EreborPlugin.Weapons
             Shield = new UOItem(uint.Parse(tmp[2].Substring(2), System.Globalization.NumberStyles.HexNumber));
         }
 
-
+        public static implicit operator WeaponSet(uint x)
+        {
+            return new WeaponSet() {Weapon=x};
+        }
 
         public void Equip()
         {
-            if (Shield.Serial != 0x00 && !(Shield.Layer == Layer.LeftHand)) Shield.Equip();
-            if (Weapon.Serial != 0x00) Weapon.Equip();
+            if (shield.Serial != 0x00 && !(shield.Layer == Layer.LeftHand)) shield.Equip();
+            if (weapon.Serial != 0x00) weapon.Equip();
         }
         public override string ToString()
         {
-            if (Weapon.Serial == 0xFFFF && Shield.Serial == 0xFFFF) return "NULL";
-            return Name+";"+Weapon.Serial.ToString()+";"+Shield.Serial.ToString();
+            if (weapon.Serial == 0xFFFF && shield.Serial == 0xFFFF) return "NULL";
+            return Name+";"+weapon.Serial.ToString()+";"+shield.Serial.ToString();
         }
     }
 }

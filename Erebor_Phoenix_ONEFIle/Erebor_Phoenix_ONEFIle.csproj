@@ -116,6 +116,7 @@
     <Compile Include="Skills\Veterinary.cs" />
     <Compile Include="Weapons\WeaponSet.cs" />
     <Compile Include="Weapons\WeaponsHandle.cs" />
+    <Compile Include="XMLObject.cs" />
   </ItemGroup>
   <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

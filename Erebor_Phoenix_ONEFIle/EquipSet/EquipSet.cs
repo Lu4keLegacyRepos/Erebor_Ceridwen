@@ -25,6 +25,7 @@ namespace Phoenix.EreborPlugin.EquipSet
         public void fillListBox(ListBox lb)
         {
             lb.Items.Clear();
+            if (equipy.Count < 1 || equipy==null) return;
             foreach (EqSet e in equipy)
             {
                 lb.Items.Add(e.getSetName);

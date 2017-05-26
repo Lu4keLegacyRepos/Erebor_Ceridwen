@@ -31,7 +31,7 @@ namespace Phoenix.EreborPlugin
             foreach (UOItem it in runeBox.AllItems.Where(item=>runeTypes.Any(typ=>item.Graphic==typ)))
             {
                 string tmps="";
-                Serial[] tmp = { 0x0, 0x0, 0x0 };
+                uint[] tmp = { 0x0, 0x0, 0x0 };
                 string[] tmp2 = { "null", "null"};
 
                     it.Click();
@@ -65,11 +65,11 @@ namespace Phoenix.EreborPlugin
                 Runes.Add(new Rune(it.Name, it.Serial, tmp, tmp2));
             }
 
-            List<string> runes_String = new List<string>();
+          /*  List<string> runes_String = new List<string>();
             foreach (Rune r in Runes)
             {
                 runes_String.Add(r.ToString());
-            }
+            }*/
             UO.PrintInformation("Nacteno");
         }
 

@@ -6,8 +6,10 @@ using Phoenix.EreborPlugin.Healing;
 using Phoenix.WorldData;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Text.RegularExpressions;
 using System.Windows.Forms;
+using System.Xml.Serialization;
 
 namespace Phoenix.EreborPlugin
 {
@@ -20,7 +22,6 @@ namespace Phoenix.EreborPlugin
         private string[] bandageDoneCalls = new string[] { " byl uspesne osetren", "Leceni se ti nepovedlo.", "prestal krvacet", " neni zranen.", "Nevidis na cil.", "Nevidis cil." };
         private List<string> onHitCalls = new List<string>() { "Tvuj cil krvaci.","Skvely zasah!", "Kriticky zasah!", "Vysavas staminu", "Vysavas zivoty!" };
         public IUOClass ActualClass;
-
 
         public int exp { get; private set; }
         private DateTime HiddenTime;
@@ -148,11 +149,12 @@ namespace Phoenix.EreborPlugin
         {
             try {
                 instance = this;
+
                 cs = new ClassSelector();
                 Done = false;
-                GWWidth = 1000;
+                GWWidth = 800;
                 GWHeight = 600;
-
+                (new XMLObject().Deserialize("WindowsSize")).SetWindowData();
                 Core.LoginComplete += Core_LoginComplete;
 
 
@@ -163,8 +165,12 @@ namespace Phoenix.EreborPlugin
 
         private void Core_LoginComplete(object sender, EventArgs e)
         {
-            Save_Load.LoadWindowSize();
-            patch = new GameWindowSize(GWWidth, GWHeight);
+            // Save_Load.LoadWindowSize();
+            try
+            {
+                patch = new GameWindowSize(GWWidth, GWHeight);
+            }
+            catch { }
             Core.UnregisterServerMessageCallback(0x1C, onBandageDone);
             Core.UnregisterServerMessageCallback(0x1C, onCrystal);
             Core.UnregisterServerMessageCallback(0x1C, onExp);
@@ -183,7 +189,7 @@ namespace Phoenix.EreborPlugin
             cs.ClassGetted += Cs_ClassGetted;
             Core.LoginComplete -= Core_LoginComplete;
             Core.Disconnected += Core_Disconnected;
-
+            
 
         }
 
@@ -216,9 +222,13 @@ namespace Phoenix.EreborPlugin
             AHeal = new AutoHeal(ActualClass);
             if (ActualClass is Klerik || ActualClass is Shaman) AHeal.PatientHurted += AHeal_PatientHurted;
             ActualClass.BandageDone = true;
-            Save_Load.Load(World.Player.Name.ToString() + ".xml");
+            //Save_Load.Load(World.Player.Name.ToString() + ".xml");
+            (new XMLObject().Deserialize(World.Player.Name.ToString())).SetData();
+
+            Erebor.Erebor.instance.BeginInvoke(new Erebor.CheckAll(Erebor.Erebor.instance.CheckAll));
 
             UO.Print("Done");
+
         }
 
         private void AHeal_PatientHurted(object sender, HurtedPatient e)
@@ -285,6 +295,10 @@ namespace Phoenix.EreborPlugin
         private void Core_Disconnected(object sender, EventArgs e)
         {
             patch = null;
+            new XMLObject().Serialize("WindowsSize");
+
+            new XMLObject().Serialize(World.Player.Name.ToString());
+
             Core.UnregisterServerMessageCallback(0x1C, onBandageDone);
             Core.UnregisterServerMessageCallback(0x1C, onCrystal);
             Core.UnregisterServerMessageCallback(0x1C, onExp);
@@ -553,7 +567,7 @@ namespace Phoenix.EreborPlugin
         [Command]
         public void save()
         {
-            Save_Load.Save(World.Player.Name.ToString() + ".xml");
+            new XMLObject().Serialize(World.Player.Name.ToString());
         }
         [Command("switch")]
         public void swit()
@@ -616,7 +630,28 @@ namespace Phoenix.EreborPlugin
             UO.Attack(Aliases.GetObject("laststatus"));
             UO.Cast(StandardSpell.Harm, Aliases.GetObject("laststatus"));
         }
-
+        [Command]
+        public void neco()
+        {
+            try
+            {
+                var xml = new XMLObject()
+                {
+                    autoArrow = Spells.AutoArrow,
+                    autoDrink = AutoDrink,
+                    runy = RuneTree.instance.Runes,
+                    minHp = ActualClass.minHP
+                };
+                var serializer = new XmlSerializer(xml.GetType());
+                File.Delete(@"\Profiles\XML\NEEEEEECO.xml");
+                using (var stream = File.OpenWrite(@"\Profiles\XML\NEEEEEECO.xml"))
+                {
+                    serializer.Serialize(stream, xml);
+                }
+            }
+            catch (Exception ex) { MessageBox.Show(ex.Message);
+            }
+            }
         CallbackResult onCrystal(byte[] data, CallbackResult prevResult)//0x1C
         {
             AsciiSpeech packet = new AsciiSpeech(data);

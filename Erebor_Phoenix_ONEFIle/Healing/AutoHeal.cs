@@ -36,7 +36,7 @@ namespace Phoenix.EreborPlugin.Healing
         }
         IUOClass ch;
 
-        public List<Patient> HealedPlayers { get; private set; }
+        public List<Patient> HealedPlayers { get; set; }
 
         public AutoHeal(IUOClass ch)
         {
@@ -52,23 +52,23 @@ namespace Phoenix.EreborPlugin.Healing
             Serial tmp=Aliases.GetObject("laststatus");
             foreach(Patient p in HealedPlayers)
             {
-                p.character.RequestStatus(100);
+                p.chara.RequestStatus(100);
             }
             Aliases.SetObject("laststatus",tmp);
         }
         private void Checker_Elapsed(object sender, ElapsedEventArgs e)
         {
-            List<Patient> tmp = HealedPlayers.Where(pat => pat.character.Distance < 7 && pat.character.Hits > 0 && pat.character.Hits < 87).ToList();
+            List<Patient> tmp = HealedPlayers.Where(pat => pat.chara.Distance < 7 && pat.chara.Hits > 0 && pat.chara.Hits < 87).ToList();
             if (tmp.Count == 0)
             {
                 PatientHurted?.Invoke(this, new HurtedPatient() { crystalOff = true });
                 return;
             }
-            tmp.Sort((x, y) => (x.character.Hits.CompareTo(y.character.Hits)));
+            tmp.Sort((x, y) => (x.chara.Hits.CompareTo(y.chara.Hits)));
             if (ch.arrowSelfProgress || World.Player.Hidden) return;
             if (World.Player.Hits < ch.minHP)
                 PatientHurted?.Invoke(this, new HurtedPatient() { selfHurted = true });
-            if (tmp[0].character.Hits > 60 && ch.musicProgress) return;
+            if (tmp[0].chara.Hits > 60 && ch.musicProgress) return;
             PatientHurted?.Invoke(this, new HurtedPatient() { pati = tmp[0] });
         }
 
@@ -103,7 +103,7 @@ namespace Phoenix.EreborPlugin.Healing
         {
             UO.PrintInformation("Zamer hrace");
             UOCharacter tmp = new UOCharacter(UIManager.TargetObject());
-            if (HealedPlayers.Any(ch => ch.character.Serial == tmp.Serial))
+            if (HealedPlayers.Any(ch => ch.chara.Serial == tmp.Serial))
             {
                 UO.PrintError("Uz je v seznamu");
                 return;
@@ -132,7 +132,7 @@ namespace Phoenix.EreborPlugin.Healing
             lb.Items.Clear();
             foreach (Patient e in HealedPlayers)
             {
-                lb.Items.Add(e.character.Name == null ? e.character.ToString() : e.character.Name.Length < 2 ? e.character.ToString() : e.character.Name + ", equip: " + e.equip.ToString());
+                lb.Items.Add(e.chara.Name == null ? e.chara.ToString() : e.chara.Name.Length < 2 ? e.chara.ToString() : e.chara.Name + ", equip: " + e.equip.ToString());
             }
 
         }

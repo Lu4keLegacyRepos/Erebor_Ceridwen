@@ -9,13 +9,14 @@ namespace Phoenix.EreborPlugin.Skills
     public delegate void Track(int choice, bool war);
     public class Tracking
     {
-        public List<string> Tracked;
-        public List<string> Ignored;
+        public List<string> Tracked { get; set; }
+        public List<string> Ignored { get; set; }
 
         bool first = true;
         uint dialogID;
         ushort menuid;
         ushort fake = 0;
+
 
 
         public Tracking()
